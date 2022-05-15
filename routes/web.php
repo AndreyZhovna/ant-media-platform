@@ -24,7 +24,7 @@ Auth::routes();
 // Streams
 Route::group(['prefix' => 'stream', 'as' => 'stream.'], static function () {
     Route::get('/index', [StreamController::class, 'index'])->name('index');
-    Route::get('/view/{stream}', [StreamController::class, 'view'])->name('view');
+    Route::get('/view/{stream:slug}', [StreamController::class, 'view'])->name('view');
 
     Route::get('/test', [StreamController::class, 'test'])->name('test');
 

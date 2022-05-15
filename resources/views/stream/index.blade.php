@@ -41,7 +41,7 @@ use App\Models\Stream;
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="{{ route('stream.view', ['stream' => $stream->id]) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                            <a href="{{ route('stream.view', ['stream' => $stream]) }}" class="btn btn-sm btn-outline-secondary">View</a>
                                         </div>
                                         <small class="text-muted">{{ $stream->created_at->format('d.m.Y H:i')  }}</small>
                                     </div>

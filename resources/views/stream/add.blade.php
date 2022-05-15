@@ -14,11 +14,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" id="title" name="title" class="form-control">
+                            <input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}">
                         </div>
                         <div class="form-group mt-3">
                             <label for="description">Description</label>
-                            <textarea id="description" name="description" class="form-control" rows="5"></textarea>
+                            <textarea id="description" name="description" class="form-control" rows="5" >{{ old('description') }}</textarea>
                         </div>
                         <div class="form-group mt-3 d-flex flex-column">
                             <label for="image_preview">Select preview image</label>
