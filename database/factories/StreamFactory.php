@@ -17,12 +17,12 @@ class StreamFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->name;
+        $title = $this->faker->name;
 
         return [
-            'name' => $name . '\'s awesome stream',
+            'title' => $title  . '\'s awesome stream',
             'description' => $this->faker->text(150),
-            'img_preview' => $this->faker->imageUrl(randomize: false, word: 'Stream preview for ' . $name, gray: true),
+            'img_preview' => $this->faker->imageUrl(randomize: false, word: 'Stream preview for ' . $title , gray: true),
             'created_by' => User::factory()->create(),
             'created_at' => $this->faker->dateTime()
         ];

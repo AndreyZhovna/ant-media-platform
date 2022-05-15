@@ -14,13 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stream', function (Blueprint $table) {
+        Schema::create('stream', static function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->string('img_preview')->nullable();
             $table->foreignIdFor(User::class, 'created_by')
-                ->constrained( app(User::class)->getTable())
+                ->constrained(app(User::class)->getTable())
                 ->cascadeOnDelete();
 
             $table->timestamps();

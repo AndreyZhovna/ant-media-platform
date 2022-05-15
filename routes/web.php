@@ -15,21 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', static function () {
+    return redirect( \route('stream.index') );
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Streams
 Route::group(['prefix' => 'stream', 'as' => 'stream.'], static function () {
     Route::get('/index', [StreamController::class, 'index'])->name('index');
     Route::get('/view/{stream}', [StreamController::class, 'view'])->name('view');
 
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'auth'], static function () {
         Route::get('/add', [StreamController::class, 'add'])->name('add');
-        Route::post('/add', [StreamController::class, 'add'])->name('add');
+        Route::post('/add', [StreamController::class, 'store'])->name('add.post');
     });
 });
