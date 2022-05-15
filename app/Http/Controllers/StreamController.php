@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Constants\StreamConstant;
 use App\Http\Requests\StreamAddRequest;
+use App\Models\Antmedia\Api;
 use App\Models\Stream;
+use App\Services\AntmediaService;
 use App\Services\StreamService;
 
 class StreamController extends Controller
@@ -18,7 +20,9 @@ class StreamController extends Controller
 
     public function index()
     {
-        $streams = Stream::orderBy('id', 'desc')
+        $streams = Stream::query()
+            ->orderBy('is_online', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return view('stream.index', [
@@ -55,7 +59,16 @@ class StreamController extends Controller
 
         $this->streamService->store($stream);
 
+        $antmediaService = new AntmediaService();
+        $antmediaService->createStream($stream);
+
         return redirect( route('stream.index') )
             ->with('message', 'Stream successfully created!');
+    }
+
+    public function test()
+    {
+        $api = new Api();
+        $api->createBroadcast(\Str::random(2), 'Title');
     }
 }

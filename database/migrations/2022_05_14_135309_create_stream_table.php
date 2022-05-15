@@ -17,11 +17,13 @@ return new class extends Migration
         Schema::create('stream', static function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('img_preview')->nullable();
             $table->foreignIdFor(User::class, 'created_by')
                 ->constrained(app(User::class)->getTable())
                 ->cascadeOnDelete();
+            $table->boolean('is_online')->default(0);
 
             $table->timestamps();
         });

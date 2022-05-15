@@ -7,9 +7,19 @@
             <div class="row row-cols-1 g-3">
                 <div class="col-md-6 offset-3">
                     <div class="card shadow-sm">
-                        <img src="{{ $stream->img_preview }}" class="card-img-top" alt="{{ $stream->title }}">
-
+                        @if($stream->is_online)
+                            <iframe width="640" height="350" src="{{ $stream->playerUrl }}" frameborder="0" allowfullscreen></iframe>
+                        @else
+                            <div style="
+                                width: 640px;
+                                height: 350px;
+                                background: url('{{ $stream->img_preview }}') 50% 50% no-repeat;
+                                background-size: cover;
+                             "></div>
+                        @endif
                         <div class="card-body">
+                            @include('stream.partials._status')
+
                             <h3>{{ $stream->title }}</h3>
                             <p class="card-text">{{ $stream->description }}</p>
                             <div class="d-flex justify-content-between align-items-center">

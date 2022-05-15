@@ -26,6 +26,9 @@ Route::group(['prefix' => 'stream', 'as' => 'stream.'], static function () {
     Route::get('/index', [StreamController::class, 'index'])->name('index');
     Route::get('/view/{stream}', [StreamController::class, 'view'])->name('view');
 
+    Route::get('/test', [StreamController::class, 'test'])->name('test');
+
+
     Route::group(['middleware' => 'auth'], static function () {
         Route::get('/add', [StreamController::class, 'add'])->name('add');
         Route::post('/add', [StreamController::class, 'store'])->name('add.post');

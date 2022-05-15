@@ -24,7 +24,8 @@ class StreamFactory extends Factory
             'description' => $this->faker->text(150),
             'img_preview' => $this->faker->imageUrl(randomize: false, word: 'Stream preview for ' . $title , gray: true),
             'created_by' => User::factory()->create(),
-            'created_at' => $this->faker->dateTime()
+            'created_at' => $this->faker->dateTime(),
+            'is_online' => $this->faker->boolean()
         ];
     }
 }

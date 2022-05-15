@@ -25,10 +25,20 @@ use App\Models\Stream;
                     @foreach($streams as $stream)
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="{{ $stream->img_preview }}" class="card-img-top" alt="{{ $stream->title }}">
+                                <div style="
+                                    width: 100%;
+                                    height: 350px;
+                                    background: url('{{ $stream->img_preview }}') 50% 50% no-repeat;
+                                    background-size: cover;
+                                    ">
+                                </div>
 
                                 <div class="card-body">
-                                    <p class="card-text">{{ $stream->title }}</p>
+                                    @include('stream.partials._status')
+
+                                    <p class="card-text">
+                                        {{ $stream->title }}
+                                    </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="{{ route('stream.view', ['stream' => $stream->id]) }}" class="btn btn-sm btn-outline-secondary">View</a>
